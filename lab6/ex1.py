@@ -4,27 +4,32 @@ import argparse
 
 
 def load_sequence(path):
+    """Load a sequence from a file."""
     with open(path, "r") as file:
         return file.read().strip()
 
 
 def fetch_entrez_sequence(seq_id, db):
+    """Fetch a sequence from Entrez given its ID and database."""
     with Entrez.efetch(db=db, id=seq_id, rettype="fasta", retmode="text") as handle:
         record = SeqIO.read(handle, "fasta")
     return record.seq
 
 
 def query_blast(algorithm, db, sequence, n_results=1):
+    """Query BLAST with the given sequence and return the result handle."""
     result_handle = Blast.qblast(algorithm, db, sequence, hitlist_size=n_results)
     return result_handle
 
 
 def parse_blast_results(result_handle):
+    """Parse BLAST results from the result handle."""
     parsed_results = NCBIXML.parse(result_handle)
     return parsed_results
 
 
 def print_alignments(blast_records):
+    """Print alignments from BLAST records."""
     for blast_record in blast_records:
         for alignment in blast_record.alignments:
             print('Alignment----------------------------------')
@@ -39,6 +44,7 @@ def print_alignments(blast_records):
 
 
 def run_demo():
+    """Run a demo with predefined sequences."""
     Entrez.email = input("Email (for Entrez): ")
     sequence_1 = """
     GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA
@@ -92,6 +98,7 @@ def run_demo():
 
 
 def main(args):
+    """Main function to handle BLAST querying and result parsing."""
     if not args.demo:
         if args.file:
             sequence = load_sequence(args.file)
