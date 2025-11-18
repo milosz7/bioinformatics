@@ -97,7 +97,7 @@ def main(args):
             sequence = load_sequence(args.file)
         elif args.seq_id:
             Entrez.email = input("Email (for Entrez): ")
-            sequence = fetch_entrez_sequence(args.seq_id, args.db)
+            sequence = fetch_entrez_sequence(args.seq_id, args.seq_db)
         else:
             raise ValueError(
                 "Either --file or --seq_id must be provided unless --demo is used. Use --help for more information.")
