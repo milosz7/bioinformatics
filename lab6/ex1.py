@@ -102,7 +102,7 @@ def main(args):
             raise ValueError(
                 "Either --file or --seq_id must be provided unless --demo is used. Use --help for more information.")
 
-        result_handle = query_blast(args.algorithm, args.db, sequence)
+        result_handle = query_blast(args.algorithm, args.db, sequence, args.n_results)
         blast_record = parse_blast_results(result_handle)
         print_alignments(blast_record)
     else:
@@ -114,6 +114,7 @@ if __name__ == "__main__":
     parser.add_argument('--algorithm', type=str, help='BLAST algorithm to use (default - blastn)', default='blastn')
     parser.add_argument('--db', type=str, help='BLAST database to use (default - nt)', default='nt')
     parser.add_argument("--demo", action='store_true', help='Run demo with predefined sequences')
+    parser.add_argument("--n_results", type=int, help='Number of BLAST results to retrieve (default - 1)', default=1)
     parser.add_argument('--file', type=str, help='Path to the file containing the sequence to query')
     parser.add_argument('--seq_id', type=str, help='ID of the sequence to query')
     parser.add_argument('--seq_db', type=str, help='Database for fetching sequence by ID (default - nucleotide)',
