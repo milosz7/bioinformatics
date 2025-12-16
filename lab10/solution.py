@@ -92,6 +92,20 @@ if __name__ == "__main__":
         contigs = merge_subsequences(args.output)
         print_summary(contigs, subsequence)
 
+    print("""
+Eksperyment dla 10000 par chromosomu Y (c):
+- Używając długości 250 i pokrycia 7 - Udało mi się zbudować sekwencję o długości 9902 będącą podsekwencją
+  badanego fragmentu chromosomu Y.
+- Używając długości 200 i pokrycia 5:
+    - 3 sekwencje o długościach 200, 721 oraz 9212 będącę podsekwencjami
+      badanego fragmentu chromosomu Y.
+    - 1 sekwencję o długości 9923 również będącą podsekwencją badanego fragmentu chromosomu Y.
+
+Powyższe są jedynie przykładowymi uruchomieniami, dokładność działania zależy od wylosowanych sekwencji i
+wzrasta wraz ze zwiększaniem ich długości oraz pokrycia. W celu dokładniejszej analizy należałoby uśrednić ilość
+znalezionych sekwencji poprzez wielokrotne uruchamianie algorytmu.
+""")
+
 
 
 
