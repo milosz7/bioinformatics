@@ -25,8 +25,6 @@ def print_results(cluster_ids, df, k=2):
         print(", ".join(df.loc[indices].index))
 
 
-
-
 def main():
     parser = argparse.ArgumentParser(description='Cluster timestamps')
     parser.add_argument("--path", help="Path to gene expression file", default="./yeast_expression.txt")
